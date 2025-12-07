@@ -13,7 +13,7 @@ public class FirstScript {
     @Test
     public void test() throws Exception {
         TestPlanStats stats = testPlan(
-                csvDataSet("id.csv"),
+                csvDataSet("id_1.csv"),
                 rpsThreadGroup()
                         .maxThreads(500)
                         .rampToAndHold(10, Duration.ofSeconds(30), Duration.ofMinutes(5))

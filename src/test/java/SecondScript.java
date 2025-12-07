@@ -12,13 +12,13 @@ public class SecondScript {
     @Test
     public void test() throws Exception {
         TestPlanStats stats = testPlan(
-                csvDataSet("id.csv"),
+                csvDataSet("id_1.csv"),
                 rpsThreadGroup()
                         .maxThreads(500)
                         .rampToAndHold(10, Duration.ofSeconds(30), Duration.ofMinutes(5))
                         .rampToAndHold(20, Duration.ofSeconds(30), Duration.ofMinutes(5))
                         .children(
-                                simpleController(
+                                simpleController("add new books",
                                         httpSampler("http://localhost:8080/api/books")
                                                 .post("{\n" +
                                                         "    \"title\": \"qwert\",\n" +
@@ -37,13 +37,13 @@ public class SecondScript {
                                                         )
                                                 )
                                 ),
-                                simpleController(
+                                simpleController("get all books",
                                         httpSampler("http://localhost:8080/api/books")
                                                 .children(
                                                         responseAssertion().containsSubstrings("[{\"id\":")
                                                 )
                                 ),
-                                simpleController(
+                                simpleController("get particular book",
                                         httpSampler("http://localhost:8080/api/books/${id}")
                                                 .children(
                                                         jsonAssertion("id").matches("${id}")
@@ -62,7 +62,7 @@ public class SecondScript {
 //                                                }
 //                                        )
 //                                ),
-                                simpleController(
+                                simpleController("change particular book",
                                         httpSampler("http://localhost:8080/api/books/${id}")
                                                 .method("PUT")
                                                 .body("{\n" +
