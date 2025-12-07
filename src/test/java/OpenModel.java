@@ -8,7 +8,7 @@ import java.time.Duration;
 
 import static us.abstracta.jmeter.javadsl.JmeterDsl.*;
 
-public class ForthScript {
+public class OpenModel {
 
     @Test
     public void test() throws Exception {
@@ -24,22 +24,22 @@ public class ForthScript {
 //                        ),
                 rpsThreadGroup()
                         .maxThreads(500)
-                        .rampToAndHold(100, Duration.ofSeconds(30), Duration.ofMinutes(5))
-                        .rampToAndHold(200, Duration.ofSeconds(30), Duration.ofMinutes(5))
+                        .rampToAndHold(10, Duration.ofSeconds(30), Duration.ofMinutes(5))
+                        .rampToAndHold(20, Duration.ofSeconds(30), Duration.ofMinutes(5))
                         .children(
                                 getAllBooks()
                         ),
                 rpsThreadGroup()
                         .maxThreads(500)
-                        .rampToAndHold(100, Duration.ofSeconds(30), Duration.ofMinutes(5))
-                        .rampToAndHold(200, Duration.ofSeconds(30), Duration.ofMinutes(5))
+                        .rampToAndHold(10, Duration.ofSeconds(30), Duration.ofMinutes(5))
+                        .rampToAndHold(20, Duration.ofSeconds(30), Duration.ofMinutes(5))
                         .children(
                                 getParticularBook()
                         ),
                 rpsThreadGroup()
                         .maxThreads(500)
-                        .rampToAndHold(100, Duration.ofSeconds(30), Duration.ofMinutes(5))
-                        .rampToAndHold(200, Duration.ofSeconds(30), Duration.ofMinutes(5))
+                        .rampToAndHold(10, Duration.ofSeconds(30), Duration.ofMinutes(5))
+                        .rampToAndHold(20, Duration.ofSeconds(30), Duration.ofMinutes(5))
                         .children(
                                 changeParticularBook()
                         ),
